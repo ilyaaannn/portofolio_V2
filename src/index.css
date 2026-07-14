@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS
+   3-color system: primary (indigo), secondary (teal), accent (amber)
+   on a white/near-white surface. Generated utilities e.g.
+   bg-primary-500, text-secondary-600, border-accent-400, etc.
+   ============================================================ */
+@theme {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Primary — soft indigo/blue */
+  --color-primary-50: #eef1fc;
+  --color-primary-100: #dce1f9;
+  --color-primary-200: #b9c3f3;
+  --color-primary-300: #96a5ed;
+  --color-primary-400: #7387e0;
+  --color-primary-500: #4f63d2;
+  --color-primary-600: #3f4fb0;
+  --color-primary-700: #333f8e;
+  --color-primary-800: #272f6c;
+  --color-primary-900: #1b2049;
+
+  /* Secondary — soft teal */
+  --color-secondary-50: #e6f7f5;
+  --color-secondary-100: #ccf0eb;
+  --color-secondary-200: #99e0d7;
+  --color-secondary-300: #66d1c3;
+  --color-secondary-400: #33c1af;
+  --color-secondary-500: #17a398;
+  --color-secondary-600: #12867d;
+  --color-secondary-700: #0e6a63;
+  --color-secondary-800: #094d48;
+  --color-secondary-900: #05302e;
+
+  /* Accent — warm amber, the "pemanis" used sparingly */
+  --color-accent-50: #fef6e7;
+  --color-accent-100: #fdedce;
+  --color-accent-200: #fbdb9d;
+  --color-accent-300: #f9c96d;
+  --color-accent-400: #f7b845;
+  --color-accent-500: #f5a623;
+  --color-accent-600: #d6890f;
+  --color-accent-700: #a8690c;
+  --color-accent-800: #7a4c09;
+  --color-accent-900: #4d2f05;
+
+  /* Neutrals */
+  --color-ink: #1a1d2e;
+  --color-muted: #667085;
+  --color-line: #e7e9f3;
+  --color-surface: #f8f9fc;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-primary-900);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Thin, quiet scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line);
+  border-radius: 999px;
+  border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-300);
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+/* Gradient text — reserved for the single hero signature moment */
+.text-gradient {
+  background-image: linear-gradient(95deg, var(--color-primary-500), var(--color-secondary-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Subtle graph-paper dot texture for the hero backdrop */
+.dot-grid {
+  background-image: radial-gradient(var(--color-primary-200) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Blinking caret for the animated code card */
+.blink-caret {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Soft floating motion for ambient hero accents */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
