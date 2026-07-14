@@ -17,7 +17,7 @@ export default function Skills() {
         <div className="mt-14 space-y-12">
           {skillCategories.map((category) => (
             <div key={category.name}>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted">{category.name}</p>
+              <p className="font-display text-xs uppercase tracking-widest text-muted">{category.name}</p>
               <motion.div
                 variants={staggerContainer(0.06)}
                 initial="hidden"

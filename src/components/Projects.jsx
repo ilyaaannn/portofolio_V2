@@ -43,7 +43,7 @@ export default function Projects() {
                   }}
                 />
                 {project.featured && (
-                  <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[11px] font-medium text-ink">
+                  <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 font-display text-[11px] font-medium text-ink">
                     Featured
                   </span>
                 )}
@@ -57,7 +57,7 @@ export default function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md bg-primary-50 px-2.5 py-1 font-mono text-[11px] text-primary-700"
+                      className="rounded-md bg-primary-50 px-2.5 py-1 font-display text-[11px] text-primary-700"
                     >
                       {tag}
                     </span>

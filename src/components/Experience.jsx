@@ -27,7 +27,7 @@ export default function Experience() {
             <motion.div key={i} variants={fadeUp} className="relative pl-12 pb-14 last:pb-0">
               <span className="absolute left-4 top-1.5 block h-3 w-3 -translate-x-1/2 rounded-full bg-primary-500 ring-4 ring-white" />
 
-              <p className="font-mono text-xs text-secondary-600">{exp.period}</p>
+              <p className="font-display text-xs text-secondary-600">{exp.period}</p>
               <h3 className="mt-1.5 font-display text-xl font-semibold text-ink">{exp.role}</h3>
               <p className="mt-0.5 text-sm font-medium text-muted">{exp.company}</p>
 

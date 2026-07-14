@@ -61,7 +61,7 @@ export default function Contact() {
                     <item.icon size={19} />
                   </span>
                   <div className="min-w-0">
-                    <p className="font-mono text-[11px] uppercase tracking-wide text-muted">{item.label}</p>
+                    <p className="font-display text-[11px] uppercase tracking-wide text-muted">{item.label}</p>
                     <p className="mt-0.5 truncate text-sm font-medium text-ink">{item.value}</p>
                   </div>
                 </div>

@@ -23,11 +23,11 @@ export default function Footer() {
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 text-xs font-bold text-white">
               {personalInfo.initials}
             </span>
-            <p className="font-mono text-xs text-muted">
+            <p className="font-display text-xs text-muted">
               © {new Date().getFullYear()} {personalInfo.fullName}. Dibuat dengan React &amp; Tailwind CSS.
             </p>
           </div>
-          <p className="font-mono text-xs text-muted">Dirancang &amp; dikembangkan dengan ☕</p>
+          <p className="font-display text-xs text-muted">Dirancang &amp; dikembangkan dengan ☕</p>
         </Container>
       </footer>
 

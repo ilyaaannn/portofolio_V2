@@ -35,7 +35,7 @@ export default function About() {
                 <Sparkles size={18} className="text-accent-500" />
                 <div>
                   <p className="font-display text-sm font-semibold text-ink leading-none">2+ tahun</p>
-                  <p className="mt-1 font-mono text-[11px] text-muted">pengalaman</p>
+                  <p className="mt-1 font-display text-[11px] text-muted">pengalaman</p>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function About() {
               viewport={viewportOnce}
               className="mt-11"
             >
-              <h3 className="inline-flex items-center gap-2 font-mono text-sm font-medium text-secondary-600">
+              <h3 className="inline-flex items-center gap-2 font-display text-sm font-medium text-secondary-600">
                 <span className="text-primary-500">&lt;</span>
                 Certification &amp; Awards
                 <span className="text-primary-500">/&gt;</span>
@@ -103,7 +103,7 @@ export default function About() {
                     </span>
                     <div className="min-w-0">
                       <p className="font-display text-sm font-semibold text-ink leading-snug">{cert.title}</p>
-                      <p className="mt-1 font-mono text-xs text-muted">
+                      <p className="mt-1 font-display text-xs text-muted">
                         {cert.issuer} · {cert.year}
                       </p>
                     </div>

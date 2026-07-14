@@ -150,7 +150,7 @@ export default function Hero() {
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
             {quickFacts.map((fact) => (
               <div key={fact.label}>
-                <p className="font-mono text-[11px] uppercase tracking-wide text-muted">{fact.label}</p>
+                <p className="font-display text-[11px] uppercase tracking-wide text-muted">{fact.label}</p>
                 <p className="mt-1 font-display text-base font-semibold text-ink">{fact.value}</p>
               </div>
             ))}
@@ -200,9 +200,9 @@ export default function Hero() {
               <span className="h-2.5 w-2.5 rounded-full bg-accent-300" />
               <span className="h-2.5 w-2.5 rounded-full bg-secondary-300" />
               <span className="h-2.5 w-2.5 rounded-full bg-primary-300" />
-              <span className="ml-3 font-mono text-xs text-muted">tentang-saya.js</span>
+              <span className="ml-3 font-display text-xs text-muted">tentang-saya.js</span>
             </div>
-            <pre className="px-6 py-6 font-mono text-[13px] sm:text-sm leading-7 overflow-x-auto">
+            <pre className="px-6 py-6 font-display text-[13px] sm:text-sm leading-7 overflow-x-auto">
               {renderedLines.map((tokens, li) => (
                 <div key={li} className="min-h-[1.75rem]">
                   {tokens.map((tk, ti) => (
