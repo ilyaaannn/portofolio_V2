@@ -1,12 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import "tailwindcss";
 
-/* ============================================================
-   DESIGN TOKENS
-   3-color system: primary (indigo), secondary (teal), accent (amber)
-   on a white/near-white surface. Generated utilities e.g.
-   bg-primary-500, text-secondary-600, border-accent-400, etc.
-   ============================================================ */
+/* DESIGN TOKENS */
 @theme {
   --font-body: "Plus Jakarta Sans", sans-serif;
 
@@ -53,9 +48,7 @@
   --color-surface: #f8f9fc;
 }
 
-/* ============================================================
-   BASE
-   ============================================================ */
+/* BASE */
 html {
   scroll-behavior: smooth;
   font-family: var(--font-body);
@@ -129,10 +122,7 @@ h6 {
   }
 }
 
-/* ============================================================
-   UTILITIES
-   ============================================================ */
-
+/* UTILITIES */
 /* Gradient text — reserved for the single hero signature moment */
 .text-gradient {
   background-image: linear-gradient(95deg, var(--color-primary-500), var(--color-secondary-500));
@@ -173,4 +163,75 @@ h6 {
 }
 .animate-float-slow {
   animation: float-slow 6s ease-in-out infinite;
+}
+
+/* GLASSMORPHISM */
+@layer utilities {
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.15);
+  }
+  .glass-light {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgb(255 255 255 / 0.6);
+    border: 1px solid rgb(255 255 255 / 0.5);
+  }
+}
+
+/* SKILLS MARQUEE */
+.marquee-row {
+  overflow: hidden;
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+  margin-bottom: -1rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
+/* Row 1: moves left → right */
+.marquee-track--ltr {
+  animation-name: marquee-ltr;
+}
+/* Row 2: moves right → left */
+.marquee-track--rtl {
+  animation-name: marquee-rtl;
+}
+/* Ketika mouse masuk ke area row, jalannya animasi pada track akan di-pause */
+.marquee-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(calc(-50% - 0.75rem));
+  }
+  to {
+    transform: translateX(calc(0% - 0.75rem));
+  }
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(calc(0% + 0.75rem));
+  }
+  to {
+    transform: translateX(calc(-50% + 0.75rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
 }

@@ -3,13 +3,20 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa6";
 import Container from "./ui/Container";
-import { personalInfo, quickFacts } from "../data/portfolioData";
+import { personalInfo } from "../data/portfolioData";
 import { fadeUp, staggerContainer } from "../utils/animations";
+import { useLanguage } from "../context/LanguageContext";
 
 // The hero's signature: a small "code editor" that types itself out,
 // using the same 3 brand colors as its syntax-highlight palette.
 const codeLines = [
-  { tokens: [{ t: "keyword", v: "const " }, { t: "plain", v: "developer" }, { t: "plain", v: " = {" }] },
+  {
+    tokens: [
+      { t: "keyword", v: "const " },
+      { t: "plain", v: "developer" },
+      { t: "plain", v: " = {" },
+    ],
+  },
   {
     tokens: [
       { t: "property", v: "  name" },
@@ -58,12 +65,10 @@ const TOKEN_COLOR = {
   plain: "text-ink",
 };
 
-const FULL_LENGTH = codeLines.reduce(
-  (sum, line) => sum + line.tokens.reduce((s, tk) => s + tk.v.length, 0) + 1,
-  0
-);
+const FULL_LENGTH = codeLines.reduce((sum, line) => sum + line.tokens.reduce((s, tk) => s + tk.v.length, 0) + 1, 0);
 
 export default function Hero() {
+  const { t } = useLanguage();
   const [revealed, setRevealed] = useState(0);
 
   useEffect(() => {
@@ -87,68 +92,49 @@ export default function Hero() {
     });
   }, [revealed]);
 
-  const cursorLine = renderedLines.reduce(
-    (last, tokens, idx) => (tokens.length > 0 ? idx : last),
-    0
-  );
+  const cursorLine = renderedLines.reduce((last, tokens, idx) => (tokens.length > 0 ? idx : last), 0);
 
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+    <section id="home" className="relative overflow-hidden pt-48 pb-48 sm:pt-48 sm:pb-48">
       {/* Ambient backdrop: quiet graph-paper texture, not a generic gradient blob */}
       <div className="absolute inset-0 -z-20 dot-grid opacity-70" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/30 via-white/70 to-white" />
       <div className="absolute -top-24 -right-16 -z-10 h-72 w-72 rounded-full bg-secondary-100/70 blur-3xl animate-float-slow" />
-      <div
-        className="absolute top-52 -left-20 -z-10 h-64 w-64 rounded-full bg-accent-100/70 blur-3xl animate-float-slow"
-        style={{ animationDelay: "-3s" }}
-      />
+      <div className="absolute top-52 -left-20 -z-10 h-64 w-64 rounded-full bg-accent-100/70 blur-3xl animate-float-slow" style={{ animationDelay: "-3s" }} />
 
       <Container className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-10 items-center">
         <motion.div variants={staggerContainer(0.12)} initial="hidden" animate="visible">
-          <motion.span
-            variants={fadeUp}
-            className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-1.5 text-sm font-medium text-muted"
-          >
+          <motion.span variants={fadeUp} className="inline-flex items-center gap-2 rounded-full border border-line bg-white/60 backdrop-blur-md px-4 py-1.5 text-sm font-medium text-muted transition-all duration-300 hover:border-secondary-200 hover:shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary-500" />
             </span>
-            {personalInfo.availability}
+            {t.hero.availability}
           </motion.span>
 
-          <motion.h1
-            variants={fadeUp}
-            className="mt-6 font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold tracking-tight text-ink leading-[1.12]"
-          >
-            Hai, saya <span className="text-gradient">{personalInfo.firstName}</span>
+          <motion.h1 variants={fadeUp} className="mt-6 font-display text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold tracking-tight text-ink leading-[1.12]">
+            {t.hero.greeting} <span className="text-gradient">{personalInfo.firstName}</span>
             <br />
             {personalInfo.role}
           </motion.h1>
 
           <motion.p variants={fadeUp} className="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-            {personalInfo.tagline}
+            {t.hero.tagline}
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-4">
-            <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="group inline-flex items-center gap-2 rounded-full bg-primary-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition-all hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg"
-            >
-              Lihat Proyek
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <button onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })} className="group inline-flex items-center gap-2 rounded-full bg-primary-500 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-primary-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lg">
+              {t.hero.ctaProjects}
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
-            <a
-              href={personalInfo.cvPath}
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-6 py-3.5 text-sm font-semibold text-ink transition-all hover:-translate-y-0.5 hover:border-primary-300 hover:text-primary-700"
-            >
+            <a href={personalInfo.cvPath} download className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-6 py-3.5 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-primary-300 hover:text-primary-700">
               <Download size={16} />
-              Unduh CV
+              {t.hero.ctaCV}
             </a>
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
-            {quickFacts.map((fact) => (
+            {t.hero.quickFacts.map((fact) => (
               <div key={fact.label}>
                 <p className="font-display text-[11px] uppercase tracking-wide text-muted">{fact.label}</p>
                 <p className="mt-1 font-display text-base font-semibold text-ink">{fact.value}</p>
@@ -157,50 +143,27 @@ export default function Hero() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-8 flex items-center gap-5">
-            <a
-              href={personalInfo.social.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="text-muted transition-colors hover:text-primary-600"
-            >
+            <a href={personalInfo.social.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-muted transition-all duration-300 hover:text-primary-600 hover:scale-110 inline-block">
               <FaGithub size={19} />
             </a>
-            <a
-              href={personalInfo.social.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="text-muted transition-colors hover:text-primary-600"
-            >
+            <a href={personalInfo.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-muted transition-all duration-300 hover:text-primary-600 hover:scale-110 inline-block">
               <FaLinkedin size={19} />
             </a>
-            <a
-              href={personalInfo.social.instagram}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="text-muted transition-colors hover:text-primary-600"
-            >
+            <a href={personalInfo.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="text-muted transition-all duration-300 hover:text-primary-600 hover:scale-110 inline-block">
               <FaInstagram size={19} />
             </a>
           </motion.div>
         </motion.div>
 
         {/* Signature element: the self-typing code card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="relative"
-        >
+        <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }} className="relative">
           <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-100 via-transparent to-secondary-100 blur-2xl" />
           <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-xl shadow-primary-900/5">
             <div className="flex items-center gap-1.5 border-b border-line bg-surface px-4 py-3">
               <span className="h-2.5 w-2.5 rounded-full bg-accent-300" />
               <span className="h-2.5 w-2.5 rounded-full bg-secondary-300" />
               <span className="h-2.5 w-2.5 rounded-full bg-primary-300" />
-              <span className="ml-3 font-display text-xs text-muted">tentang-saya.js</span>
+              <span className="ml-3 font-display text-xs text-muted">{t.hero.codeFileName}</span>
             </div>
             <pre className="px-6 py-6 font-display text-[13px] sm:text-sm leading-7 overflow-x-auto">
               {renderedLines.map((tokens, li) => (
